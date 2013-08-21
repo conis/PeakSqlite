@@ -33,7 +33,8 @@
   pag.pageIndex = MAX(0, MIN(aIndex, pag.pageCount));
   
   //计算startIndex和endIndex
-  pag.startIndex = pag.pageIndex <= 1 ? 0 : pag.pageIndex * pag.pageSize - pag.pageSize;
+  //pag.startIndex = pag.pageIndex <= 1 ? 0 : pag.pageIndex * pag.pageSize - pag.pageSize;
+  pag.startIndex = pag.pageIndex * pag.pageSize;
   pag.endIndex = pag.pageSize;
   return pag;
 }
@@ -41,7 +42,7 @@
 //根据条件对当前表进行分页计算
 -(PeakPagination) paginationWithCondition: (NSString *) cond parameters: (NSArray *) params pageIndex: (NSInteger) aIndex pageSize: (NSInteger) aSize{
   NSString *sql = [NSString stringWithFormat:
-                   @"SELECT (%@) FROM %@ WHERE 1 = 1 %@",
+                   @"SELECT COUNT(%@) FROM %@ WHERE 1 = 1 %@",
                    self.primaryField,
                    self.tableName,
                    [PeakSqlite getString: cond]];
