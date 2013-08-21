@@ -20,6 +20,7 @@
     self.fields = @[@"id", @"todo", @"timestamp", @"done"];
     //主键的ID
     //self.primaryField = @"id";
+    [self setDefault];
   }
   return self;
 }
@@ -42,9 +43,10 @@
 
 //插入数据
 -(int)insert{
-  NSString *sql = @"INSERT INTO diary(%@) VALUES (%@)";
+  NSString *sql = @"INSERT INTO todolist(%@) VALUES (%@)";
   NSString *insertFields = @"todo, timestamp, done";
   NSString *insertValues = @"?,?,?";
+  NSLog(@"%d", self.ID);
   //没有指定ID
   if(self.ID != NSNotFound){
     insertFields = [insertFields stringByAppendingString: @", id"];
@@ -114,5 +116,11 @@
 //字段名：done
 +(NSString*)done{
   return @"done";
+}
+
+//创建数据库的sql语句
++(NSString *) sqlForCreateTable{
+  //注意，日期类型在sqlite中不支持，所以日期类型会被转换为float类型
+  return @"CREATE TABLE if not exists todolist(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, timestamp FLOAT, done boolean, todo TEXT)";
 }
 @end

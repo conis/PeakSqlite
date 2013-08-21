@@ -26,6 +26,6 @@
 //返回字段名称
 +(NSString *) ID;
 +(NSString *) todo;
-+(NSString *) teldTimestamp;
++(NSString *) timestamp;
 +(NSString *) done;
 @end
