@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SampleTodoEntity.h"
 
-@interface RootViewController : UIViewController
+@interface RootViewController : UIViewController<UITabBarDelegate, UITableViewDataSource>
 @property (nonatomic, strong) FMDatabase *database;
 @property (weak, nonatomic) IBOutlet UITextField *todoInput;
 @property (weak, nonatomic) IBOutlet UITableView *todolist;
-@property (weak, nonatomic) NSArray *datas;
+@property (strong, nonatomic) NSArray *datas;
 @end

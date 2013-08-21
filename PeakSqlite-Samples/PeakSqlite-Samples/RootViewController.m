@@ -39,7 +39,15 @@
 //查找数据
 -(void) search{
   SampleTodoEntity *entity = [[SampleTodoEntity alloc] initWithFMDB: self.database];
-  self.datas = [entity findAllWithOrderBy: [NSString stringWithFormat: @" ORDER BY %@", [SampleTodoEntity timestamp]]];
+  //根据条件查询，条件要在前面加上" AND"
+  //NSString *cond = @" AND id < 8";
+  NSString *orderBy = [NSString stringWithFormat: @" ORDER BY %@ DESC", [SampleTodoEntity ID]];
+  //self.datas = [entity findWithCondition:cond parameters:nil orderBy:nil];
+  //分页查询，先根据条件查出分页数据，然后把startIndex和endIndex交给findWithCondition查询
+  //PeakPagination pag = [entity paginationWithCondition:cond parameters:nil pageIndex:2 pageSize:3];
+  //self.datas = [entity findWithCondition:cond parameters:nil orderBy:orderBy startIndex:pag.startIndex endIndex:pag.endIndex];
+  
+  self.datas = [entity findAllWithOrderBy: orderBy];
   [self.todolist reloadData];
 }
 
@@ -82,6 +90,8 @@
 
 //添加新的todo
 - (IBAction)createTodo:(UIButton *)sender {
+  [self.todoInput resignFirstResponder];
+  
   SampleTodoEntity *entity = [[SampleTodoEntity alloc] initWithFMDB: self.database];
   entity.todo = self.todoInput.text;
   entity.timestamp = [NSDate date];
@@ -92,6 +102,21 @@
 }
 
 #pragma  mark 委托
+-(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+  return YES; 
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    //删除
+    NSDictionary *dict = [self.datas objectAtIndex: [indexPath row]];
+    NSInteger todoId = [[dict objectForKey: [SampleTodoEntity ID]] intValue];
+    SampleTodoEntity *entity = [[SampleTodoEntity alloc] initWithFMDB: self.database];
+    [entity deleteWithPrimary: todoId];
+    [self search];
+  }
+}
+
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   return self.datas.count;
 }
