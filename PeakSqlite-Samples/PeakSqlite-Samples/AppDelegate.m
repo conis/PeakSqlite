@@ -11,16 +11,17 @@
 
 @implementation AppDelegate
 
-//初始化数据库
--(void) initDatabase{
-  
-}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+  
+    self.viewController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    self.window.rootViewController = self.viewController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

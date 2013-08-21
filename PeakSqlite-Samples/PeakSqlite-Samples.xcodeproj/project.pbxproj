@@ -19,6 +19,8 @@
 		D296E0BD17C450990036B3ED /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D296E0BC17C450990036B3ED /* Default-568h@2x.png */; };
 		D296E0CA17C469400036B3ED /* SampleTodoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D296E0C917C469400036B3ED /* SampleTodoEntity.m */; };
 		D296E0CD17C46CE10036B3ED /* PeakSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D296E0CC17C46CE00036B3ED /* PeakSqlite.m */; };
+		D296E0D417C4B69E0036B3ED /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D296E0D217C4B69D0036B3ED /* RootViewController.m */; };
+		D296E0D517C4B69E0036B3ED /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D296E0D317C4B69D0036B3ED /* RootViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,9 @@
 		D296E0C917C469400036B3ED /* SampleTodoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleTodoEntity.m; sourceTree = "<group>"; };
 		D296E0CB17C46CE00036B3ED /* PeakSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeakSqlite.h; sourceTree = "<group>"; };
 		D296E0CC17C46CE00036B3ED /* PeakSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeakSqlite.m; sourceTree = "<group>"; };
+		D296E0D117C4B69D0036B3ED /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		D296E0D217C4B69D0036B3ED /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		D296E0D317C4B69D0036B3ED /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		FDFFE1B73C2A4797B499FD14 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = "PeakSqlite-Samples/Pods/Pods.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -94,6 +99,9 @@
 				D296E0B517C450990036B3ED /* AppDelegate.h */,
 				D296E0B617C450990036B3ED /* AppDelegate.m */,
 				D296E0AD17C450990036B3ED /* Supporting Files */,
+				D296E0D117C4B69D0036B3ED /* RootViewController.h */,
+				D296E0D217C4B69D0036B3ED /* RootViewController.m */,
+				D296E0D317C4B69D0036B3ED /* RootViewController.xib */,
 			);
 			path = "PeakSqlite-Samples";
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 				D296E0B917C450990036B3ED /* Default.png in Resources */,
 				D296E0BB17C450990036B3ED /* Default@2x.png in Resources */,
 				D296E0BD17C450990036B3ED /* Default-568h@2x.png in Resources */,
+				D296E0D517C4B69E0036B3ED /* RootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +237,7 @@
 				D296E0B717C450990036B3ED /* AppDelegate.m in Sources */,
 				D296E0CA17C469400036B3ED /* SampleTodoEntity.m in Sources */,
 				D296E0CD17C46CE10036B3ED /* PeakSqlite.m in Sources */,
+				D296E0D417C4B69E0036B3ED /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
