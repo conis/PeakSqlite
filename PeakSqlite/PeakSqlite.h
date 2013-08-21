@@ -56,7 +56,7 @@ typedef struct{
 //保存当前实例
 -(BOOL) save;
 //根据主键删除
--(BOOL) deleteWithPrimary:(id)primaryId;
+-(BOOL) deleteWithPrimary:(NSInteger)primaryId;
 //根据条件删除某个表的数据
 -(BOOL) deleteWithCondition:(NSString *)condition parameters:(NSArray *)params;
 

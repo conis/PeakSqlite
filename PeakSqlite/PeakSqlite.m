@@ -52,9 +52,9 @@
 #pragma mark 增删改
 
 //根据主键删除
--(BOOL) deleteWithPrimary:(id)primaryId
+-(BOOL) deleteWithPrimary:(NSInteger)primaryId
 {
-  NSString *condition = [NSString stringWithFormat: @" AND %@ = %@", self.primaryField, primaryId];
+  NSString *condition = [NSString stringWithFormat: @" AND %@ = %d", self.primaryField, primaryId];
   return [self deleteWithCondition:condition parameters:nil];
 }
 
@@ -64,7 +64,10 @@
   NSString *sql = [NSString stringWithFormat: @"DELETE FROM %@ WHERE 1 = 1%@",
                    self.tableName,
                    [PeakSqlite getString: cond]];
-  return [self.database executeUpdate:sql withArgumentsInArray:params];
+  [self.database open];
+  BOOL result = [self.database executeUpdate:sql withArgumentsInArray:params];
+  [self.database close];
+  return result;
 }
 
 //插入或者更新数据，根据ID来判断
