@@ -99,5 +99,6 @@ typedef struct{
 +(NSString *) valueToString:(id)value;
 //将数据库中的值转换为日期
 +(NSDate*) valueToDate:(id)value;
-+(NSString *) dateToValue: (NSDate *) date;
++(id) dateToValue: (NSDate *) date;
++(NSString *) sqlForCreateTable;
 @end

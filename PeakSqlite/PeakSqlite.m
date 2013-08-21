@@ -40,7 +40,11 @@
 
 //根据条件对当前表进行分页计算
 -(PeakPagination) paginationWithCondition: (NSString *) cond parameters: (NSArray *) params pageIndex: (NSInteger) aIndex pageSize: (NSInteger) aSize{
-  NSString *sql = [NSString stringWithFormat: @"SELECT (%@) FROM %@ WHERE 1 = 1 %@", self.primaryField, self.tableName, cond];
+  NSString *sql = [NSString stringWithFormat:
+                   @"SELECT (%@) FROM %@ WHERE 1 = 1 %@",
+                   self.primaryField,
+                   self.tableName,
+                   [PeakSqlite getString: cond]];
   return [self paginationWithSql:sql parameters:params pageIndex:aIndex pageSize:aSize];
 }
 
@@ -54,9 +58,11 @@
 }
 
 //根据条件删除某个表的数据
--(BOOL) deleteWithCondition:(NSString *)condition parameters:(NSArray *)params
+-(BOOL) deleteWithCondition:(NSString *)cond parameters:(NSArray *)params
 {
-  NSString *sql = [NSString stringWithFormat: @"DELETE FROM %@ WHERE 1 = 1%@", self.tableName, condition];
+  NSString *sql = [NSString stringWithFormat: @"DELETE FROM %@ WHERE 1 = 1%@",
+                   self.tableName,
+                   [PeakSqlite getString: cond]];
   return [self.database executeUpdate:sql withArgumentsInArray:params];
 }
 
@@ -122,13 +128,21 @@
 //根据条件计算当前表
 -(NSInteger) countWithCondition:(NSString *)cond parameters:(NSArray *)params
 {
-  NSString *sql = [NSString stringWithFormat: @"SELECT COUNT(%@) total FROM %@ WHERE 1 = 1 %@", self.primaryField, self.tableName, cond];
+  NSString *sql = [NSString stringWithFormat:
+                   @"SELECT COUNT(%@) total FROM %@ WHERE 1 = 1 %@",
+                   self.primaryField,
+                   self.tableName,
+                   [PeakSqlite getString: cond]];
   return [self countWithSql:sql parameters:params];
 }
 
 //根据条件统计当前表的某一个字段
 -(CGFloat) sumWithCondition: (NSString *) cond field: (NSString *) field parameters:(NSArray *)params{
-  NSString *sql = [NSString stringWithFormat: @"SELECT sum(%@) total FROM %@ WHERE 1 = 1 %@", field, self.tableName, cond];
+  NSString *sql = [NSString stringWithFormat:
+                   @"SELECT sum(%@) total FROM %@ WHERE 1 = 1 %@",
+                   field,
+                   self.tableName,
+                   [PeakSqlite getString: cond]];
   return [self sumWithSql:sql parameters:params];
 }
 
@@ -142,7 +156,12 @@
 -(BOOL) findOneWithCondition:(NSString *)cond parameters:(NSArray *)params orderBy:(NSString *)orderBy
 {
   NSString *fields = [self.fields componentsJoinedByString:@","];
-  NSString *sql = [NSString stringWithFormat: @"SELECT %@ FROM %@ WHERE 1 = 1 %@ %@ LIMIT 1", fields, self.tableName, cond, orderBy];
+  NSString *sql = [NSString stringWithFormat:
+                   @"SELECT %@ FROM %@ WHERE 1 = 1 %@ %@ LIMIT 1",
+                   fields,
+                   self.tableName,
+                   [PeakSqlite getString: cond],
+                   [PeakSqlite getString: orderBy]];
   
   //sql = [sql stringByAppendingString: cond];
   //if(orderBy != nil) sql = [sql stringByAppendingFormat:@" ORDER BY %@", sort];
@@ -196,7 +215,12 @@
 //根据条件查询，可以进行分页
 -(NSArray *) findWithCondition: (NSString *) cond parameters:(NSArray *)params orderBy:(NSString *)orderBy startIndex: (NSInteger) start endIndex: (NSInteger) end{
   NSString *fields = [self.fields componentsJoinedByString: @","];
-  NSString *sql = [NSString stringWithFormat: @"SELECT %@ FROM %@ WHERE 1 = 1 %@ %@", fields, self.tableName, cond, orderBy];
+  NSString *sql = [NSString stringWithFormat:
+                   @"SELECT %@ FROM %@ WHERE 1 = 1 %@ %@",
+                   fields,
+                   self.tableName,
+                   [PeakSqlite getString: cond],
+                   [PeakSqlite getString: orderBy]];
   return [self findWithSql:sql parameters:params startIndex:start endIndex:end];
 }
 
@@ -211,6 +235,11 @@
 }
 
 #pragma mark 类方法
+//获取字符串，如果是nil，则返回一个空字符串 
++(NSString *) getString: (NSString *) text{
+  return text == nil ? @"" : text;
+}
+
 //将nil转换为NSNull null，主要针对指针类型
 +(id) nilFilter: (id) value{
   return value == nil ? [NSNull null] : value;
@@ -241,8 +270,13 @@
   return nil;
 }
 
-//将日期转换为文本，因为sqlite数据不支持date类型
-+(NSString *) dateToValue: (NSDate *) date{
+//将日期转换为数字，因为sqlite不支持数据库
++(id) dateToValue: (NSDate *) date{
+  if(date == nil) return [NSNull null];
+  return  [NSNumber numberWithFloat: [date timeIntervalSince1970]];
+}
+
++(NSString *) sqlForCreateTable{
   return nil;
 }
 @end
