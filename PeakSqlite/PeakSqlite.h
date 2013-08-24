@@ -24,7 +24,7 @@ typedef struct{
 
 @interface PeakSqlite : NSObject
 
-@property (nonatomic, weak) FMDatabase *database;
+@property (nonatomic, strong) FMDatabase *database;
 //查询出来的一条数据
 @property (nonatomic, strong) NSDictionary *data;
 //表名

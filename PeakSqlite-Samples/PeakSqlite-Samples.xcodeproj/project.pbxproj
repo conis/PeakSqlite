@@ -22,7 +22,6 @@
 		D296E0CD17C46CE10036B3ED /* PeakSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D296E0CC17C46CE00036B3ED /* PeakSqlite.m */; };
 		D296E0D417C4B69E0036B3ED /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D296E0D217C4B69D0036B3ED /* RootViewController.m */; };
 		D296E0D517C4B69E0036B3ED /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D296E0D317C4B69D0036B3ED /* RootViewController.xib */; };
-		D296E0DC17C654C10036B3ED /* TodolistEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D296E0DB17C654C10036B3ED /* TodolistEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +47,6 @@
 		D296E0D117C4B69D0036B3ED /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D296E0D217C4B69D0036B3ED /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		D296E0D317C4B69D0036B3ED /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
-		D296E0DA17C654C10036B3ED /* TodolistEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TodolistEntity.h; path = ../TodolistEntity.h; sourceTree = "<group>"; };
-		D296E0DB17C654C10036B3ED /* TodolistEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TodolistEntity.m; path = ../TodolistEntity.m; sourceTree = "<group>"; };
 		FDFFE1B73C2A4797B499FD14 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = "PeakSqlite-Samples/Pods/Pods.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -129,8 +126,6 @@
 		D296E0C717C469400036B3ED /* PeakSqlite */ = {
 			isa = PBXGroup;
 			children = (
-				D296E0DA17C654C10036B3ED /* TodolistEntity.h */,
-				D296E0DB17C654C10036B3ED /* TodolistEntity.m */,
 				D296E0C817C469400036B3ED /* SampleTodoEntity.h */,
 				D296E0C917C469400036B3ED /* SampleTodoEntity.m */,
 				D296E0CB17C46CE00036B3ED /* PeakSqlite.h */,
@@ -247,7 +242,6 @@
 				D296E0CA17C469400036B3ED /* SampleTodoEntity.m in Sources */,
 				D296E0CD17C46CE10036B3ED /* PeakSqlite.m in Sources */,
 				D296E0D417C4B69E0036B3ED /* RootViewController.m in Sources */,
-				D296E0DC17C654C10036B3ED /* TodolistEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
