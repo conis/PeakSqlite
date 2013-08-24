@@ -70,7 +70,7 @@
   self.data = data;
   self.ID = [[data objectForKey:@"id"] intValue];
   self.timestamp = [PeakSqlite valueToDate: [data objectForKey:@"timestamp"]];
-  self.done = [[data objectForKey:@"done"] doubleValue];
+  self.done = [[data objectForKey:@"done"] boolValue];
   self.todo  = [PeakSqlite valueToString: [data objectForKey:@"todo"]];
 }
 
