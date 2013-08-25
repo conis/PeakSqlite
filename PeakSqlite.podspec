@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.author       = { "Conis" => "conis.yi@gmail.com" }
   s.source       = { :git => "https://github.com/conis/PeakSqlite.git", :tag => "lastest"}
   s.platform     = :ios, '5.0'
-  s.source_files = 'PeakSqlite/*.{h,m}'
+  s.source_files = 'PeakSqlite/PeakSqlite.{h,m}'
   s.dependency  'FMDB'
   s.framework  = 'UIKit'
   s.requires_arc = true
