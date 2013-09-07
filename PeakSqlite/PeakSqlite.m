@@ -179,8 +179,8 @@
 }
 
 //根据主键，获取一条记录
--(BOOL)findOneWithPrimaryId:(id) primaryId{
-  NSString *cond = [NSString stringWithFormat: @" AND %@ = %@", self.primaryField, primaryId];
+-(BOOL)findOneWithPrimaryId:(NSInteger) primaryId{
+  NSString *cond = [NSString stringWithFormat: @" AND %@ = %d", self.primaryField, primaryId];
   return [self findOneWithCondition:cond parameters:nil orderBy:nil];
 }
 

@@ -76,7 +76,7 @@ typedef struct{
 //获取一条记录
 -(BOOL) findOneWithCondition:(NSString *)cond parameters:(NSArray *)params orderBy:(NSString *)orderBy;
 //根据主键，获取一条记录
--(BOOL)findOneWithPrimaryId:(id) primaryId;
+-(BOOL)findOneWithPrimaryId:(NSInteger) primaryId;
 //从FMResultSet中读取数据，子类继承
 //-(BOOL) findOneWithFMResultSet:(FMResultSet *)rs;
 //根据Sql搜索，并返回结果集
