@@ -170,12 +170,16 @@
   //sql = [sql stringByAppendingString: cond];
   //if(orderBy != nil) sql = [sql stringByAppendingFormat:@" ORDER BY %@", sort];
   //sql = [sql stringByAppendingString: @" LIMIT 1"];
-  
+  BOOL success = NO;
+  [self.database open];
   FMResultSet *rs = [self.database executeQuery:sql withArgumentsInArray: params];
-  self.data = rs.resultDictionary;
+  while ([rs next]) {
+    success = YES;
+    [self parseFromDictionary: rs.resultDictionary];
+  };
   [rs close];
   [self.database close];
-  return self.data != nil;
+  return success;
 }
 
 //根据主键，获取一条记录
@@ -184,11 +188,13 @@
   return [self findOneWithCondition:cond parameters:nil orderBy:nil];
 }
 
+/*
 //子类重载实现数据填充
 -(BOOL) findOneWithFMResultSet:(FMResultSet *)rs{
   NSLog(@"子类必需实现此方法");
   return NO;
 }
+*/
 
 //根据Sql搜索，并返回结果集
 -(NSArray *) findWithSql:(NSString *)sql parameters:(NSArray *)params{
