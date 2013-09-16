@@ -1,0 +1,13 @@
+{
+	"sqlite": [
+             "CREATE TABLE if not exists todolist(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, timestamp FLOAT, done boolean, todo TEXT)"],
+  "saveToFolder": "PeakSqlite-Samples/PeakSqlite-Samples",
+  "options": {
+  	"classFormatter": "{0}Entity",
+    "mapping":{
+      "todolist":{
+        "timestamp": "date"
+      }
+    }
+  }
+}
