@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SampleTodoEntity.h"
+#import "TodolistEntity.h"
 
 @interface RootViewController : UIViewController<UITabBarDelegate, UITableViewDataSource>
 @property (nonatomic, strong) FMDatabase *database;

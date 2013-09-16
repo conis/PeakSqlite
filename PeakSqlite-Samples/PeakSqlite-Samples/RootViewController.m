@@ -38,10 +38,10 @@
 
 //查找数据
 -(void) search{
-  SampleTodoEntity *entity = [[SampleTodoEntity alloc] initWithFMDB: self.database];
+  TodolistEntity *entity = [[TodolistEntity alloc] initWithFMDB: self.database];
   //根据条件查询，条件要在前面加上" AND"
   //NSString *cond = @" AND id < 8";
-  NSString *orderBy = [NSString stringWithFormat: @" ORDER BY %@ DESC", [SampleTodoEntity ID]];
+  NSString *orderBy = [NSString stringWithFormat: @" ORDER BY %@ DESC", [TodolistEntity FieldID]];
   //self.datas = [entity findWithCondition:cond parameters:nil orderBy:nil];
   //分页查询，先根据条件查出分页数据，然后把startIndex和endIndex交给findWithCondition查询
   //PeakPagination pag = [entity paginationWithCondition:cond parameters:nil pageIndex:2 pageSize:3];
@@ -66,7 +66,7 @@
   self.database.traceExecution = YES;
   //建表
   [self.database open];
-  [self.database executeUpdate: [SampleTodoEntity sqlForCreateTable]];
+  [self.database executeUpdate: [TodolistEntity sqlForCreateTable]];
   [self.database close];
   
   [self insertSamples];
@@ -75,7 +75,7 @@
 //插入示例数据
 -(void) insertSamples{
   for(int i = 0; i < 10; i ++){
-    SampleTodoEntity *entity = [[SampleTodoEntity alloc] initWithFMDB: self.database];
+    TodolistEntity *entity = [[TodolistEntity alloc] initWithFMDB: self.database];
     entity.todo = [NSString stringWithFormat: @"Todo %d", i];
     entity.timestamp = [NSDate date];
     entity.done = NO;
@@ -92,7 +92,7 @@
 - (IBAction)createTodo:(UIButton *)sender {
   [self.todoInput resignFirstResponder];
   
-  SampleTodoEntity *entity = [[SampleTodoEntity alloc] initWithFMDB: self.database];
+  TodolistEntity *entity = [[TodolistEntity alloc] initWithFMDB: self.database];
   entity.todo = self.todoInput.text;
   entity.timestamp = [NSDate date];
   entity.done = NO;
@@ -110,8 +110,8 @@
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     //删除
     NSDictionary *dict = [self.datas objectAtIndex: [indexPath row]];
-    NSInteger todoId = [[dict objectForKey: [SampleTodoEntity ID]] intValue];
-    SampleTodoEntity *entity = [[SampleTodoEntity alloc] initWithFMDB: self.database];
+    NSInteger todoId = [[dict objectForKey: [TodolistEntity FieldID]] intValue];
+    TodolistEntity *entity = [[TodolistEntity alloc] initWithFMDB: self.database];
     [entity deleteWithPrimary: todoId];
     [self search];
   }
@@ -135,12 +135,12 @@
   }
   
   NSDictionary *dict = self.datas[row];
-  NSDate *date = [PeakSqlite valueToDate: [dict objectForKey: [SampleTodoEntity timestamp]]];
+  NSDate *date = [PeakSqlite valueToDate: [dict objectForKey: [TodolistEntity FieldTimestamp]]];
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   [dateFormatter setDateStyle: NSDateFormatterFullStyle];
   cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
   
-  cell.textLabel.text = [dict objectForKey: [SampleTodoEntity todo]];
+  cell.textLabel.text = [dict objectForKey: [TodolistEntity FieldTodo]];
   ;
   return cell;
 }
