@@ -1,25 +1,30 @@
-//
-//  PeakSqlite.m
-//  PeakSqlite-Samples
-//
-//  Created by conis on 8/21/13.
-//  Copyright (c) 2013 conis. All rights reserved.
-//
+/*
+  TodolistEntity.m
+  todolist的实体类，基于peaksqlite-entity-maker生成。所生成的代码仅适用于PeakSqlite项目
+  更多敬请访问：https://github.com/conis/peaksqlite-entity-maker
+  PeakSqlite项目：https://github.com/conis/PeakSqlite
 
+  =======================作者信息====================
+  作者：Conis
+  GitHub: https://github.com/conis
+  博客：http://iove.net/
+  E-mail: conis.yi@gmail.com
+*/
 
-#import "SampleTodoEntity.h"
+#import "TodolistEntity.h"
 
-@implementation SampleTodoEntity
+@implementation TodolistEntity
 
+//初始化
 -(id) initWithFMDB:(FMDatabase *)database{
   self = [super initWithFMDB:database];
   if(self){
     //给表名赋值
     self.tableName = @"todolist";
     //字段列表
-    self.fields = @[@"id", @"todo", @"timestamp", @"done"];
-    //主键的ID
-    //self.primaryField = @"id";
+    self.fields = @[@"id", @"timestamp", @"done", @"todo"];
+    
+    self.primaryField = @"id";
     [self setDefault];
   }
   return self;
@@ -29,25 +34,29 @@
 -(void) setDefault{
   //清除数据
   self.ID = NSNotFound;
-  self.todo = nil;
   self.timestamp = nil;
+  self.done = NO;
+  self.todo = nil;
+  
 }
 
 //获取所有字段存到数据库的值
 -(NSArray *) parameters{
-  return @[[PeakSqlite nilFilter:self.todo],
-           [PeakSqlite dateToValue: self.timestamp],
-           [NSNumber numberWithBool: self.done],
-           [NSNumber numberWithInt: self.ID]];
+  return @[
+    [PeakSqlite dateToValue: self.timestamp],
+    [NSNumber numberWithBool: self.done],
+    [PeakSqlite nilFilter: self.todo],
+    [NSNumber numberWithInt: self.ID]
+  ];
 }
 
 //插入数据
 -(int)insert{
   NSString *sql = @"INSERT INTO todolist(%@) VALUES (%@)";
-  NSString *insertFields = @"todo, timestamp, done";
+  NSString *insertFields = @"timestamp,done,todo";
   NSString *insertValues = @"?,?,?";
-  NSLog(@"%d", self.ID);
-  //没有指定ID
+
+  //没有指定主键
   if(self.ID != NSNotFound){
     insertFields = [insertFields stringByAppendingString: @", id"];
     insertValues = [insertValues stringByAppendingString: @", ?"];
@@ -58,7 +67,7 @@
 
 //更新数据
 -(BOOL)update{
-  NSString *sql = @"UPDATE todolist SET todo = ?, timestamp = ?, done = ? WHERE id = ?";
+  NSString *sql = @"UPDATE todolist SET timestamp = ?,done = ?,todo = ? WHERE id = ?";
   [self.database open];
   BOOL result = [self.database executeUpdate:sql withArgumentsInArray: [self parameters]];
   [self.database close];
@@ -69,28 +78,16 @@
 -(void)parseFromDictionary: (NSDictionary *) data{
   self.data = data;
   self.ID = [[data objectForKey:@"id"] intValue];
+  
   self.timestamp = [PeakSqlite valueToDate: [data objectForKey:@"timestamp"]];
-  self.done = [[data objectForKey:@"done"] boolValue];
-  self.todo  = [PeakSqlite valueToString: [data objectForKey:@"todo"]];
-}
-
-//获取一条数据
--(BOOL) findOneWithCondition:(NSString *)cond parameters:(NSArray *)params orderBy:(NSString *)orderBy{
-  BOOL result = [super findOneWithCondition:cond parameters:params orderBy:orderBy];
-  //将数据填充到属性
-  if(result){
-    [self parseFromDictionary: self.data];
-  }else{
-    //没有找到数据，还原为初始值
-    [self setDefault];
-  }
-  return result;
+  self.done = [[self.data objectForKey:@"done"] boolValue];
+  self.todo = [PeakSqlite valueToString: [data objectForKey:@"todo"]];
 }
 
 //==================获取字段名及表名==================
 //获取所有的字段名称
 +(NSArray *) fields{
-  return @[@"id", @"todo", @"timestamp", @"done"];
+  return  @[@"id", @"timestamp", @"done", @"todo"];
 }
 
 //获取表名
@@ -98,29 +95,29 @@
   return @"todolist";
 }
 
-//字段名：id
-+(NSString*)ID{
+//主键：
++(NSString*) FieldID{
   return @"id";
 }
 
-//字段名： timestamp
-+(NSString*)timestamp{
+
+//字段名：timestamp
++(NSString*) FieldTimestamp{
   return @"timestamp";
 }
 
-//字段名：todo
-+(NSString*)todo{
-  return @"todo";
-}
-
 //字段名：done
-+(NSString*)done{
++(NSString*) FieldDone{
   return @"done";
 }
 
-//创建数据库的sql语句
+//字段名：todo
++(NSString*) FieldTodo{
+  return @"todo";
+}
+
+
 +(NSString *) sqlForCreateTable{
-  //注意，日期类型在sqlite中不支持，所以日期类型会被转换为float类型
   return @"CREATE TABLE if not exists todolist(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, timestamp FLOAT, done boolean, todo TEXT)";
 }
 @end
