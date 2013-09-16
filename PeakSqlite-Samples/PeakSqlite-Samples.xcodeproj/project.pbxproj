@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C456A2CAAFA9419E8E2E5AAF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F954200A0EC4BC38984DB1D /* libPods.a */; };
 		D2708F4817C867DB005F190C /* PeakSqlite.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D2708F4717C867DB005F190C /* PeakSqlite.podspec */; };
+		D2804AF417E6B1A300D3E617 /* PeakSqlite.json in Resources */ = {isa = PBXBuildFile; fileRef = D2804AF317E6B1A300D3E617 /* PeakSqlite.json */; };
+		D2804AF717E6B24000D3E617 /* TodolistEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D2804AF617E6B24000D3E617 /* TodolistEntity.m */; };
 		D296E0A717C450990036B3ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D296E0A617C450990036B3ED /* UIKit.framework */; };
 		D296E0A917C450990036B3ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D296E0A817C450990036B3ED /* Foundation.framework */; };
 		D296E0AB17C450990036B3ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D296E0AA17C450990036B3ED /* CoreGraphics.framework */; };
@@ -18,7 +20,6 @@
 		D296E0B917C450990036B3ED /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D296E0B817C450990036B3ED /* Default.png */; };
 		D296E0BB17C450990036B3ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D296E0BA17C450990036B3ED /* Default@2x.png */; };
 		D296E0BD17C450990036B3ED /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D296E0BC17C450990036B3ED /* Default-568h@2x.png */; };
-		D296E0CA17C469400036B3ED /* SampleTodoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D296E0C917C469400036B3ED /* SampleTodoEntity.m */; };
 		D296E0CD17C46CE10036B3ED /* PeakSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D296E0CC17C46CE00036B3ED /* PeakSqlite.m */; };
 		D296E0D417C4B69E0036B3ED /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D296E0D217C4B69D0036B3ED /* RootViewController.m */; };
 		D296E0D517C4B69E0036B3ED /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D296E0D317C4B69D0036B3ED /* RootViewController.xib */; };
@@ -27,6 +28,9 @@
 /* Begin PBXFileReference section */
 		7F954200A0EC4BC38984DB1D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2708F4717C867DB005F190C /* PeakSqlite.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PeakSqlite.podspec; path = ../../PeakSqlite.podspec; sourceTree = "<group>"; };
+		D2804AF317E6B1A300D3E617 /* PeakSqlite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = PeakSqlite.json; path = ../../PeakSqlite.json; sourceTree = "<group>"; };
+		D2804AF517E6B24000D3E617 /* TodolistEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodolistEntity.h; sourceTree = "<group>"; };
+		D2804AF617E6B24000D3E617 /* TodolistEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodolistEntity.m; sourceTree = "<group>"; };
 		D296E0A317C450990036B3ED /* PeakSqlite-Samples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PeakSqlite-Samples.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D296E0A617C450990036B3ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D296E0A817C450990036B3ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,8 +44,6 @@
 		D296E0B817C450990036B3ED /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D296E0BA17C450990036B3ED /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D296E0BC17C450990036B3ED /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D296E0C817C469400036B3ED /* SampleTodoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleTodoEntity.h; sourceTree = "<group>"; };
-		D296E0C917C469400036B3ED /* SampleTodoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleTodoEntity.m; sourceTree = "<group>"; };
 		D296E0CB17C46CE00036B3ED /* PeakSqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeakSqlite.h; sourceTree = "<group>"; };
 		D296E0CC17C46CE00036B3ED /* PeakSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeakSqlite.m; sourceTree = "<group>"; };
 		D296E0D117C4B69D0036B3ED /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -98,6 +100,8 @@
 		D296E0AC17C450990036B3ED /* PeakSqlite-Samples */ = {
 			isa = PBXGroup;
 			children = (
+				D2804AF517E6B24000D3E617 /* TodolistEntity.h */,
+				D2804AF617E6B24000D3E617 /* TodolistEntity.m */,
 				D296E0B517C450990036B3ED /* AppDelegate.h */,
 				D296E0B617C450990036B3ED /* AppDelegate.m */,
 				D296E0AD17C450990036B3ED /* Supporting Files */,
@@ -111,6 +115,7 @@
 		D296E0AD17C450990036B3ED /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D2804AF317E6B1A300D3E617 /* PeakSqlite.json */,
 				D2708F4717C867DB005F190C /* PeakSqlite.podspec */,
 				D296E0AE17C450990036B3ED /* PeakSqlite-Samples-Info.plist */,
 				D296E0AF17C450990036B3ED /* InfoPlist.strings */,
@@ -126,8 +131,6 @@
 		D296E0C717C469400036B3ED /* PeakSqlite */ = {
 			isa = PBXGroup;
 			children = (
-				D296E0C817C469400036B3ED /* SampleTodoEntity.h */,
-				D296E0C917C469400036B3ED /* SampleTodoEntity.m */,
 				D296E0CB17C46CE00036B3ED /* PeakSqlite.h */,
 				D296E0CC17C46CE00036B3ED /* PeakSqlite.m */,
 			);
@@ -190,6 +193,7 @@
 			files = (
 				D296E0B117C450990036B3ED /* InfoPlist.strings in Resources */,
 				D296E0B917C450990036B3ED /* Default.png in Resources */,
+				D2804AF417E6B1A300D3E617 /* PeakSqlite.json in Resources */,
 				D296E0BB17C450990036B3ED /* Default@2x.png in Resources */,
 				D296E0BD17C450990036B3ED /* Default-568h@2x.png in Resources */,
 				D296E0D517C4B69E0036B3ED /* RootViewController.xib in Resources */,
@@ -239,8 +243,8 @@
 			files = (
 				D296E0B317C450990036B3ED /* main.m in Sources */,
 				D296E0B717C450990036B3ED /* AppDelegate.m in Sources */,
-				D296E0CA17C469400036B3ED /* SampleTodoEntity.m in Sources */,
 				D296E0CD17C46CE10036B3ED /* PeakSqlite.m in Sources */,
+				D2804AF717E6B24000D3E617 /* TodolistEntity.m in Sources */,
 				D296E0D417C4B69E0036B3ED /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
