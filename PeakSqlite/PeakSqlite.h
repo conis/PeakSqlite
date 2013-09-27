@@ -95,10 +95,18 @@ typedef struct{
 +(id) nilFilter: (id) value;
 //是否为数据库中的空值
 +(BOOL) isDBNull:(id)value;
-//将数据库值转为字符，防止出现NSNull
-+(NSString *) valueToString:(id)value;
-//将数据库中的值转换为日期
-+(NSDate*) valueToDate:(id)value;
 +(id) dateToValue: (NSDate *) date;
 +(NSString *) sqlForCreateTable;
+
+//将数据库中的值转换为各种类型
++(BOOL) valueToBool:(id)value;
++(BOOL) valueToBool:(id)value defaultValue:(BOOL)def;
++(NSInteger) valueToInt: (id) value;
++(NSInteger) valueToInt: (id) value defaultValue: (NSInteger) def;
++(NSString *) valueToString: (id) value;
++(NSString *) valueToString: (id) value defaultValue: (NSString *) def;
++(CGFloat) valueToFloat: (id) value;
++(CGFloat) valueToFloat: (id) value defaultValue: (CGFloat) def;
++(NSDate*) valueToDate:(id)value;
++(NSDate*) valueToDate:(id)value defaultValue: (NSDate*) def;
 @end

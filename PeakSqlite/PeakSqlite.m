@@ -260,15 +260,74 @@
   return value == [NSNull null];
 }
 
-//将数据库值转为字符，防止出现NSNull
-+(NSString *) valueToString:(id)value{
-  return [self isDBNull: value] ? nil : value;
+//返回sql语句，子类需要重载
++(NSString *) sqlForCreateTable{
+  return nil;
 }
 
-//将数据库中的值转换为日期
-+(NSDate*) valueToDate:(id)value
-{
-  if([self isDBNull: value]) return nil;
+//将string转换为数据库中的值
++(id) stringToValue: (NSString *) text{
+  return (text == nil) ? [NSNull null] : text;
+}
+
+//将日期转换为数字，因为sqlite不支持日期类型的字段
++(id) dateToValue: (NSDate *) date{
+  if(date == nil) return [NSNull null];
+  return  [NSNumber numberWithFloat: [date timeIntervalSince1970]];
+}
+
+//sqlite中的值转换为bool，默认为NO
++(BOOL) valueToBool:(id)value{
+  return [self valueToBool:value defaultValue:NO];
+}
+
+//sqlite中的值转换为bool，并可以设置默认值
++(BOOL) valueToBool:(id)value defaultValue:(BOOL)def{
+  if([PeakSqlite isDBNull: value] || value == nil) return def;
+  return [value boolValue];
+}
+
+//sqlite中的值转换为int，默认为NSNotFound
++(NSInteger) valueToInt: (id) value{
+  return [self valueToInt:value defaultValue:NSNotFound];
+}
+
+//sqlite中的值转换为int，并可以设置默认值
++(NSInteger) valueToInt: (id) value defaultValue: (NSInteger) def{
+  if ([PeakSqlite isDBNull: value] || value == nil) return def;
+  return [value intValue];
+}
+
+//sqlite中的值转换为String，默认为nil
++(NSString *) valueToString: (id) value{
+  return [self valueToString:value defaultValue:nil];
+}
+
+//sqlite中的值转换为String，并可以设置默认值
++(NSString *) valueToString: (id) value defaultValue: (NSString *) def{
+  if([PeakSqlite isDBNull: value] || value == nil) return def;
+  return value;
+}
+
+//sqlite中的值转换为Float，默认为CGFLOAT_MIN
++(CGFloat) valueToFloat: (id) value{
+  return [self valueToFloat:value defaultValue: CGFLOAT_MIN];
+}
+
+//sqlite中的值转换为Float，并可以设置默认值
++(CGFloat) valueToFloat: (id) value defaultValue: (CGFloat) def{
+  if ([PeakSqlite isDBNull: value] || value == nil) return def;
+  return [value floatValue];
+}
+
+//将数据库中的值转换为日期，默认为nil
++(NSDate*) valueToDate:(id)value{
+  return [self valueToDate: value defaultValue:nil];
+}
+
+//将数据库中的值转换为日期，并可以设置默认值
++(NSDate*) valueToDate:(id)value defaultValue: (NSDate*) def{
+  if([self isDBNull: value]) return def;
   //如果是数字的话，则使用dateWithTimeIntervalSince1970转换
   if([value isMemberOfClass:[NSNumber class]]){
     return [NSDate dateWithTimeIntervalSince1970: [value doubleValue]];
@@ -277,16 +336,6 @@
     return [dateFormatter dateFromString: value];
   }
   
-  return nil;
-}
-
-//将日期转换为数字，因为sqlite不支持数据库
-+(id) dateToValue: (NSDate *) date{
-  if(date == nil) return [NSNull null];
-  return  [NSNumber numberWithFloat: [date timeIntervalSince1970]];
-}
-
-+(NSString *) sqlForCreateTable{
-  return nil;
+  return def;
 }
 @end
