@@ -10,6 +10,12 @@
 
 @implementation PeakSqlite
 
+-(id) init{
+  NSString *raise = [NSString stringWithFormat: @"请使用 initWithFMDB: 初始化%@", NSStringFromClass([self class])];
+  [NSException raise: raise format: nil];
+  return nil;
+}
+
 //初始化
 -(id) initWithFMDB:(FMDatabase *)database{
   self = [super init];
