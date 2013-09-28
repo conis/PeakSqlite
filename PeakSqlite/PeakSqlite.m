@@ -340,9 +340,9 @@
 +(NSDate*) valueToDate:(id)value defaultValue: (NSDate*) def{
   if([self isDBNull: value]) return def;
   //如果是数字的话，则使用dateWithTimeIntervalSince1970转换
-  if([value isMemberOfClass:[NSNumber class]]){
+  if([value isKindOfClass:[NSNumber class]]){
     return [NSDate dateWithTimeIntervalSince1970: [value doubleValue]];
-  }else if([value isMemberOfClass:[NSString class]]){
+  }else if([value isKindOfClass:[NSString class]]){
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     return [dateFormatter dateFromString: value];
   }
