@@ -251,6 +251,11 @@
 }
 
 #pragma mark 类方法
+//主键的键名，默认为id
++(NSString *) fieldPrimary{
+  return @"id";
+}
+
 //获取字符串，如果是nil，则返回一个空字符串 
 +(NSString *) getString: (NSString *) text{
   return text == nil ? @"" : text;

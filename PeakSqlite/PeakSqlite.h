@@ -91,6 +91,7 @@ typedef struct{
 -(NSArray *) findAllWithOrderBy: (NSString *) orderBy startIndex: (NSInteger) start endIndex: (NSInteger) end;
 
 //==================类方法============
++(NSString *) fieldPrimary;
 //将nil转换为NSNull null，主要针对指针类型
 +(id) nilFilter: (id) value;
 //是否为数据库中的空值
