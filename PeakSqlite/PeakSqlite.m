@@ -284,7 +284,7 @@
 //将日期转换为数字，因为sqlite不支持日期类型的字段
 +(id) dateToValue: (NSDate *) date{
   if(date == nil) return [NSNull null];
-  return  [NSNumber numberWithFloat: [date timeIntervalSince1970]];
+  return  [NSNumber numberWithDouble: [date timeIntervalSince1970]];
 }
 
 //sqlite中的值转换为bool，默认为NO
