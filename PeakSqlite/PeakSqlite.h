@@ -89,7 +89,10 @@ typedef struct{
 -(NSArray *) findAllWithOrderBy: (NSString *) orderBy;
 //查询所有数据，并可以分页
 -(NSArray *) findAllWithOrderBy: (NSString *) orderBy startIndex: (NSInteger) start endIndex: (NSInteger) end;
-
+//检查表是否存在
+-(BOOL) existsWithTableName: (NSString *) tableName;
+//检测某个表的某个字段是否存在
+-(BOOL) existsWithTableName:(NSString *)tableName fieldName: (NSString *) field;
 //==================类方法============
 +(NSString *) fieldPrimary;
 //将nil转换为NSNull null，主要针对指针类型

@@ -250,6 +250,39 @@
   return [self findWithCondition:nil parameters:nil orderBy:orderBy startIndex:start endIndex:end];
 }
 
+//根据表名，查找sql语句
+-(NSString *) findSqlWithTableName: (NSString *) tableName{
+  NSString *sql = [NSString stringWithFormat:@"SELECT sql FROM sqlite_master WHERE type='table' AND name='%@';", tableName];
+  return [self scalarWithSql:sql parameters:nil];
+}
+
+//检测表名是否存在
+-(BOOL) existsWithTableName:(NSString *)tableName{
+  NSString *sql = [self findSqlWithTableName:tableName];
+  return sql != nil;
+}
+
+//检测某个表的某个字段是否存在
+-(BOOL) existsWithTableName:(NSString *)tableName fieldName:(NSString *)field{
+  NSString *sql = [NSString stringWithFormat:@"PRAGMA table_info('%@')", tableName];
+  
+  [self.database open];
+  FMResultSet *rs = [self.database executeQuery: sql];
+  
+  BOOL exists = NO;
+  //读取第一条数据
+  while ([rs next]) {
+    NSString *currentName = [rs stringForColumn:@"name"];
+    if([field isEqualToString: currentName]){
+      exists = YES;
+      break;
+    };
+  }
+  [rs close];
+  [self.database close];
+  //检查sql语句中是否包含此字段
+  return exists;
+}
 #pragma mark 类方法
 //主键的键名，默认为id
 +(NSString *) fieldPrimary{
