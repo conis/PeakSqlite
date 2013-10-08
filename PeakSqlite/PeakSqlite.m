@@ -284,6 +284,16 @@
   return exists;
 }
 #pragma mark 类方法
++(NSString *) tableName{
+  [NSException raise: @"子类必需实现：+(NSString *)tableName" format: nil];
+  return nil;
+}
+
++(NSArray *) fields{
+  [NSException raise: @"子类必需实现：+(NSString *)fields" format: nil];
+  return nil;
+}
+
 //主键的键名，默认为id
 +(NSString *) fieldPrimary{
   return @"id";

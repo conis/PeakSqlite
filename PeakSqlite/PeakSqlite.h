@@ -94,6 +94,8 @@ typedef struct{
 //检测某个表的某个字段是否存在
 -(BOOL) existsWithTableName:(NSString *)tableName fieldName: (NSString *) field;
 //==================类方法============
++(NSString *) tableName;
++(NSArray *) fields;
 +(NSString *) fieldPrimary;
 //将nil转换为NSNull null，主要针对指针类型
 +(id) nilFilter: (id) value;
