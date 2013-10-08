@@ -256,6 +256,14 @@
   return [self scalarWithSql:sql parameters:nil];
 }
 
+//添加字段
+-(void) alterWithField:(NSString *)fieldName dataType:(NSString *)dataType{
+  NSString *sql = [NSString stringWithFormat:@"alter table %@ add %@ %@", self.tableName, fieldName, dataType];
+  [self.database open];
+  [self.database executeUpdate: sql];
+  [self.database close];
+}
+
 //检测表名是否存在
 -(BOOL) existsWithTableName:(NSString *)tableName{
   NSString *sql = [self findSqlWithTableName:tableName];

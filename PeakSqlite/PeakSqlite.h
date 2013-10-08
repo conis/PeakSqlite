@@ -93,6 +93,7 @@ typedef struct{
 -(BOOL) existsWithTableName: (NSString *) tableName;
 //检测某个表的某个字段是否存在
 -(BOOL) existsWithTableName:(NSString *)tableName fieldName: (NSString *) field;
+-(void) alterWithField: (NSString *) fieldName dataType: (NSString *) dataType;
 //==================类方法============
 +(NSString *) tableName;
 +(NSArray *) fields;
