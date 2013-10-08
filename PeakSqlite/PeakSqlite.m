@@ -70,9 +70,7 @@
   NSString *sql = [NSString stringWithFormat: @"DELETE FROM %@ WHERE 1 = 1%@",
                    self.tableName,
                    [PeakSqlite getString: cond]];
-  [self.database open];
-  BOOL result = [self.database executeUpdate:sql withArgumentsInArray:params];
-  [self.database close];
+  BOOL result = [self executeWithSql:sql parameters:params];
   return result;
 }
 
@@ -110,6 +108,15 @@
   [self.database close];
   return lastId;
 }
+
+//执行更新数据，返回结果
+-(BOOL) executeWithSql:(NSString *)sql parameters:(NSArray *)params{
+  [self.database open];
+  BOOL result = [self.database executeUpdate:sql withArgumentsInArray:params];
+  [self.database close];
+  return result;
+}
+
 
 #pragma makr 获取数据
 //获取第一行第一列的数据
@@ -259,9 +266,7 @@
 //添加字段
 -(void) alterWithField:(NSString *)fieldName dataType:(NSString *)dataType{
   NSString *sql = [NSString stringWithFormat:@"alter table %@ add %@ %@", self.tableName, fieldName, dataType];
-  [self.database open];
-  [self.database executeUpdate: sql];
-  [self.database close];
+  [self executeWithSql:sql parameters:nil];
 }
 
 //检测表名是否存在

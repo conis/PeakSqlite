@@ -59,7 +59,7 @@ typedef struct{
 -(BOOL) deleteWithPrimary:(NSInteger)primaryId;
 //根据条件删除某个表的数据
 -(BOOL) deleteWithCondition:(NSString *)condition parameters:(NSArray *)params;
-
+-(BOOL) executeWithSql:(NSString *)sql parameters:(NSArray *)params;
 //======================计算与统计==================
 //根据Sql来计算总记录数
 -(NSInteger)countWithSql:(NSString *)sql parameters:(NSArray *)params;
