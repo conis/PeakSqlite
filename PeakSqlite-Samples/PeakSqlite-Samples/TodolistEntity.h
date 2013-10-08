@@ -16,7 +16,7 @@
 @interface TodolistEntity : PeakSqlite
 
 //属性
-@property (nonatomic) NSInteger ID;
+//@property (nonatomic) NSInteger ID;
 
 
 @property (nonatomic, strong) NSDate  *timestamp;
@@ -27,12 +27,12 @@
 
 
 //类方法
-+(NSString *) FieldID;
+//+(NSString *) fieldID;
 
-+(NSString *) FieldTimestamp;
++(NSString *) fieldTimestamp;
 
-+(NSString *) FieldDone;
++(NSString *) fieldDone;
 
-+(NSString *) FieldTodo;
++(NSString *) fieldTodo;
 
 @end

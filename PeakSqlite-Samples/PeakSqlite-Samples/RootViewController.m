@@ -41,7 +41,7 @@
   TodolistEntity *entity = [[TodolistEntity alloc] initWithFMDB: self.database];
   //根据条件查询，条件要在前面加上" AND"
   //NSString *cond = @" AND id < 8";
-  NSString *orderBy = [NSString stringWithFormat: @" ORDER BY %@ DESC", [TodolistEntity FieldID]];
+  NSString *orderBy = [NSString stringWithFormat: @" ORDER BY %@ DESC", [TodolistEntity fieldPrimary]];
   //self.datas = [entity findWithCondition:cond parameters:nil orderBy:nil];
   //分页查询，先根据条件查出分页数据，然后把startIndex和endIndex交给findWithCondition查询
   //PeakPagination pag = [entity paginationWithCondition:cond parameters:nil pageIndex:2 pageSize:3];
@@ -110,7 +110,7 @@
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     //删除
     NSDictionary *dict = [self.datas objectAtIndex: [indexPath row]];
-    NSInteger todoId = [[dict objectForKey: [TodolistEntity FieldID]] intValue];
+    NSInteger todoId = [[dict objectForKey: [TodolistEntity fieldPrimary]] intValue];
     TodolistEntity *entity = [[TodolistEntity alloc] initWithFMDB: self.database];
     [entity deleteWithPrimary: todoId];
     [self search];
@@ -135,12 +135,12 @@
   }
   
   NSDictionary *dict = self.datas[row];
-  NSDate *date = [PeakSqlite valueToDate: [dict objectForKey: [TodolistEntity FieldTimestamp]]];
+  NSDate *date = [PeakSqlite valueToDate: [dict objectForKey: [TodolistEntity fieldTimestamp]]];
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   [dateFormatter setDateStyle: NSDateFormatterFullStyle];
   cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
   
-  cell.textLabel.text = [dict objectForKey: [TodolistEntity FieldTodo]];
+  cell.textLabel.text = [dict objectForKey: [TodolistEntity fieldTodo]];
   ;
   return cell;
 }

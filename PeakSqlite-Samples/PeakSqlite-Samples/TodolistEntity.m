@@ -25,15 +25,15 @@
     self.fields = @[@"id", @"timestamp", @"done", @"todo"];
     
     self.primaryField = @"id";
-    [self setDefault];
+    [self reset];
   }
   return self;
 }
 
 //设置默认数据
--(void) setDefault{
-  //清除数据
-  self.ID = NSNotFound;
+-(void) reset{
+  //重置数据
+  self.primaryId = NSNotFound;
   self.timestamp = nil;
   self.done = NO;
   self.todo = nil;
@@ -46,7 +46,7 @@
     [PeakSqlite dateToValue: self.timestamp],
     [NSNumber numberWithBool: self.done],
     [PeakSqlite nilFilter: self.todo],
-    [NSNumber numberWithInt: self.ID]
+    [NSNumber numberWithInt: self.primaryId]
   ];
 }
 
@@ -57,7 +57,7 @@
   NSString *insertValues = @"?,?,?";
 
   //没有指定主键
-  if(self.ID != NSNotFound){
+  if(self.primaryId != NSNotFound){
     insertFields = [insertFields stringByAppendingString: @", id"];
     insertValues = [insertValues stringByAppendingString: @", ?"];
   }
@@ -77,7 +77,7 @@
 //转换字典到当前实例
 -(void)parseFromDictionary: (NSDictionary *) data{
   self.data = data;
-  self.ID = [[data objectForKey:@"id"] intValue];
+  self.primaryId = [[data objectForKey:@"id"] intValue];
   
   self.timestamp = [PeakSqlite valueToDate: [data objectForKey:@"timestamp"]];
   self.done = [[self.data objectForKey:@"done"] boolValue];
@@ -96,23 +96,23 @@
 }
 
 //主键：
-+(NSString*) FieldID{
++(NSString*) fieldPrimary{
   return @"id";
 }
 
 
 //字段名：timestamp
-+(NSString*) FieldTimestamp{
++(NSString*) fieldTimestamp{
   return @"timestamp";
 }
 
 //字段名：done
-+(NSString*) FieldDone{
++(NSString*) fieldDone{
   return @"done";
 }
 
 //字段名：todo
-+(NSString*) FieldTodo{
++(NSString*) fieldTodo{
   return @"todo";
 }
 
